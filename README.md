@@ -3,7 +3,7 @@ This repository contains data science studies performed on publicly available da
 
 # Contents
 ## Pima Indian Diabetes dataset
-This notebook ([link](pima_indians_diabetes.ipynb) shows a quick Exploratory Data Analysis as well as different model testing on a *classification problem*.
+This notebook ([link](pima_indians_diabetes.ipynb)) shows a quick Exploratory Data Analysis as well as different model testing on a *classification problem*.
 
 The main interests are:
 * an enhancement of Python's `describe()` command, so that for each variable it displays the number of NAs, distinct values and correlation with target
