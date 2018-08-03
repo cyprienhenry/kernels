@@ -1,10 +1,12 @@
-This repository contains quick data science studies performed on publicly available datasets.
+This repository contains data science studies performed on publicly available datasets.
 
-# Notebook contents
-[pima_indians_diabetes.ipynb](pima_indians_diabetes.ipynb): this notebook demonstrates a quick Exploratory Data Analysis as well as modeling on a classification problem.
+
+# Contents
+## Pima Indian Diabetes dataset
+This notebook ([link](pima_indians_diabetes.ipynb) shows a quick Exploratory Data Analysis as well as different model testing on a *classification problem*.
 
 The main interests are:
-* an enhancement of Python's `describe()` command, so that it displays number of NAs, distinct values and correlation with target, for each variable
-* use of Seaborn for plots, whch leads to effortless display of correlation matrix, violin plots and scatterplot matrix
-* use of `sklearn.pipeline` module, to create a robust data processing pipeline and avoid data leakage
+* an enhancement of Python's `describe()` command, so that for each variable it displays the number of NAs, distinct values and correlation with target
+* use of Seaborn for plots, which leads to effortless display of correlation matrix, violin plots and scatterplot matrix
+* use of `sklearn.pipeline` module, to create a robust data processing pipeline and avoid data leakage when cross-validating
 * grid search optimization and feature importance display for Random Forest classifier
