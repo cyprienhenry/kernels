@@ -88,6 +88,20 @@ from sklearn.preprocessing import LabelEncoder
 * [Gradient Boosting Classifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html)
 `from sklearn.ensemble import GradientBoostingClassifier`
 
+### Performance evaluation
+* [ROC AUC Score](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html)
+`from sklearn.metrics import roc_auc_score`
+
+* [ROC Curve](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html)
+`from sklearn.metrics import roc_curve`
+
+* [Confusion Matrix](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html)
+`from sklearn.metrics import confusion_matrix`
+
+* [Make scorer](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.make_scorer.html)
+`from sklearn.metrics import make_scorer`
+
+
 ## Datasets creation
 ### Train / test sets
 The classical way is:
@@ -97,4 +111,31 @@ X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=
 
 # To perform CV in case of inbalanced classes
 kfold= StratifiedKFold(n_splits=3, random_state=7)
+```
+
+## Model training
+Example of a basic grid search:
+```
+model = RandomForestClassifier(class_weight='balanced', random_state=7, n_jobs=-1)
+param_grid = {'n_estimators': [700, 800, 1000],
+             'max_features': [5, 6, 7],
+              'max_depth': [3, 4, 5]}
+              
+grid_search = GridSearchCV(model, 
+                           param_grid, 
+                           scoring='recall_macro', 
+                           cv=kfold)
+
+grid_result = grid_search.fit(X_train, y_train);
+print("Best score: %.2f using %s" % (grid_result.best_score_, grid_result.best_params_))
+```
+## Performance analysis
+### Feature importance
+To display feature importance from the best model of a grid search:
+```
+model = grid_result.best_estimator_
+importance = model.feature_importances_ 
+plt.figure(figsize=(15, 10))
+ft_imp = pd.DataFrame({'feature': features.columns.values, 'importance': importance}).sort_values('importance', ascending=False)
+sns.barplot(data=ft_imp[:30], y='feature', x='importance')
 ```
